@@ -1,19 +1,23 @@
 body {
-    background-color: #404040;
-    color: #f0f0f0;
+    background-color: #f0f0f0;
+    color: #404040;
     font-family: "Segoe UI", "Roboto", "Helvetica Neue", "Ubuntu", sans-serif;
 }
-  
+
+a {
+    color: #8e2424
+}
+
 h1 {
-    color: #f0f0f0
+    color: #404040
 }
   
 h2 {
-    color: #f0f0f0
+    color: #404040
 }
   
 h3 {
-    color: #f0f0f0
+    color: #404040
 }
  
 pre {
@@ -40,7 +44,7 @@ table, th, td {
     vertical-align: top;
     width: 350px;
     position: fixed;
-    background: #999999;
+    background: #d0d0d0;
     margin: 20px;
     border-radius: 15px;
     padding-top: 10px;
@@ -48,12 +52,8 @@ table, th, td {
     line-height: 1.6
 }
  
-#navigation a:link {
-    color: #FFFFFF
-}
- 
-#navigation a:visited {
-    color: #FFFFFF
+#navigation a {
+    color: #374052
 }
   
 #main {
