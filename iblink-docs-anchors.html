@@ -1,4 +1,4 @@
-<h2>Introduction</h2>
+<h2>Introduction <a name="introduction"></a></h2>
 <p>Interactive Brokers is merging our web-based API products into a single, comprehensive IBKR Web API, bringing the features of the Client Portal Web API, Digital Account Management, and the Flex Web Service together in a unified interface, accessible by a shared means of authorization and authentication: OAuth 2.0.</p>
 <p>Existing endpoints and authentication schemes are not deprecated and will continue to receive features and updates. Rather, we look forward to providing our clients with a new, coordinated set of endpoints exposing the same backend resources. To support this orchestration, the documentation below addresses the functionality of the Client Portal Web API, Digital Account Management, and the Flex Web Service side by side under the Web API umbrella.</p>
 <p>Additionally, we have reorganized our development resources into two sections:</p>
@@ -10,16 +10,16 @@
 <p><strong>Reference:</strong> Per-endpoint API definitions, presented in a Swagger interface. We apologize that not all endpoints in our Web API are currently included in this Reference. We are working to expand its contents, and they will be available shortly.</p>
 </li>
 </ul>
-<h2>Feedback</h2>
+<h2>Feedback <a name="feedback"></a></h2>
 <p>Have feedback on our Web API documentation or reference material?</p>
 <p>Email us at <a href="mailto:API-Feedback@interactivebrokers.com">API-Feedback@interactivebrokers.com</a>.</p>
 <p>We value your suggestions, ideas, and feedback in order to continuously improve our API solutions.</p>
 <p><em>This is an automated feedback inbox and unfortunately, we will not be actively responding from this email. However, if you need a specific answer or additional support, please contact our <a href="https://ibkrcampus.com/api/webapi-doc/#help">API Support team</a> or <a href="https://www.interactivebrokers.com/en/support/customer-service.php">access our general support</a>. Current or prospective institutional clients may also <a href="https://www.interactivebrokers.com/en/support/institutions.php">contact their sales representative</a>.</em></p>
-<h2>Getting Started</h2>
+<h2>Getting Started <a name="getting-started"></a></h2>
 <p>Clients with fully open and funded accounts may use our Web API to interact with their accounts immediately, without any onboarding or approval process.</p>
 <p>However, our Web API offers several methods of authentication, some of which do require approval or configuration prior to use.</p>
 <p>Additionally, certain sets of features of the Web API, such as Account Registration and Funds and Banking, are not available to all account types and also require configuration by our Sales Engineering team prior to use.</p>
-<h3>Web API Access for Organizations</h3>
+<h3>Web API Access for Organizations <a name="web-api-access-for-organizations"></a></h3>
 <p>Enterprise and Institutional clients have several methods of authorization and authentication at their disposal.
 All methods permit requests to be made directly to Interactive Brokers' infrastructure.</p>
 <p>Please also note that our Web API consists of two broad feature sets, <em>Trading</em> and <em>Account Management</em>.
@@ -39,11 +39,11 @@ For a more thorough discussion of these access methods, please contact our API I
 <li>Supports the development of alternative UIs specifically for clients under your management</li>
 <li>Offers access to account management and trading features</li>
 </ul>
-<h3>Web API Access for Individuals</h3>
+<h3>Web API Access for Individuals <a name="web-api-access-for-individuals"></a></h3>
 <p>Web API usage for individual clients involves an IBKR username and password.</p>
 <p>Whether accessing a live account or its associated simulated paper account, the live account must be fully open and funded. The live account must also be of the "IBKR Pro" type.</p>
 <p>If you do not already have an account, you can <a href="https://www.interactivebrokers.com/en/index.php?f=46380#open-account">create one for free</a>.</p>
-<h3>Web API Access for Third Parties</h3>
+<h3>Web API Access for Third Parties <a name="web-api-access-for-third-parties"></a></h3>
 <p>Interactive Brokers identifies third-party developers as vendors of software that would interact with IB client accounts to which the vendor has no formal relationship or access within IB. This is in contrast to an advisor or introducing broker who maintains an account structure with IB and formally manages client accounts.</p>
 <p>Third-party vendors may currently only seek approval for the use of OAuth1.0a.</p>
 <p>Third-party vendors must be receive Compliance approval for their product offerings before integration can proceed.</p>
@@ -58,8 +58,8 @@ Please note that vendors are expected to have an established business entity and
 <p>During the enhanced due diligence reviews conducted by our Compliance teams, they will expect vendors to have a completed website with finalized details of the product offering. This typically includes a clear user workflow for all components and descriptions of their functionality and capabilities.</p>
 <p>Should Compliance approval be reached for your product offering, any significant changes to the offering following approved (such as the addition of trading functionality) would require additional review and approval from our Compliance teams before being offered to IBKR clients.</p>
 <p>Please be aware we expect third-party vendors offering automated trading solutions to hold applicable registration with financial authorities in all regions they plan to service, unless the vendor is able to provide support (i.e., a legal opinion) as to why the proposed service would not require registration in a given location. Additionally, the offering will need to be reviewed and approved by Compliance teams in all regions in which you intend to serve IBKR clients.</p>
-<h2>Usage and Support</h2>
-<h3>Contacting API Support</h3>
+<h2>Usage and Support <a name="usage-and-support"></a></h2>
+<h3>Contacting API Support <a name="contacting-api-support"></a></h3>
 <p>Interactive Brokers always welcomes users to contact customer support in the event of API behavior issues. To help expedite the troubleshooting process for customers, it is encouraged to first consider the following:</p>
 <ul>
 <li>Does this issue persist in other platforms? Am I receiving errors with an order even when performing the same action in Trader Workstation rather than through the API?</li>
@@ -74,7 +74,7 @@ Please note that vendors are expected to have an established business entity and
 <li><a href="https://www.interactivebrokers.com/en/support/customer-service.php?p=chat">Chat Live with API Support</a></li>
 <li><a href="https://www.interactivebrokers.com/en/support/customer-service.php?p=contact">Get Help by Phone</a></li>
 </ul>
-<h3>Scheduled Server Maintenance</h3>
+<h3>Scheduled Server Maintenance <a name="scheduled-server-maintenance"></a></h3>
 <p>Interactive Brokers conducts scheduled maintenance on the infrastructure that serves the Web API. During maintenance windows, some features of the Web API are momentarily unavailable.</p>
 <p>The timing of the Web API's maintenance windows vary slightly from the those observed in other platforms, such as Trader Workstation.</p>
 <p>The Web API itself is accessible 24 hours a day during the week. It receives maintenance only on Saturday evenings.</p>
@@ -102,7 +102,7 @@ Please note that vendors are expected to have an established business entity and
 </tr>
 </tbody>
 </table>
-<h3>Pacing Limitations</h3>
+<h3>Pacing Limitations <a name="pacing-limitations"></a></h3>
 <p>Interactive Brokers currently enforces a global request rate limit of 50 requests per second for each authenticated username -- that is, each Web API session.</p>
 <p>Users making requests via the CP Gateway tool are restricted to 10 requests per second.</p>
 <p>Additionally, some endpoints are also subject to their own pacing limits as described in the table below.</p>
@@ -267,7 +267,7 @@ Please note that vendors are expected to have an established business entity and
 </tr>
 </tbody>
 </table>
-<h2>Sessions in the Web API</h2>
+<h2>Sessions in the Web API <a name="sessions-in-the-web-api"></a></h2>
 <p>Access to Trading functionality in the Web API entails the creation of a trading-enabled <em>brokerage session</em>.</p>
 <p>A brokerage session is associated with an IB <em>username</em> (your credentials), which in turn has trading permissions for one or more <em>accounts</em> (the actual pools of equity).</p>
 <p>A single username can only have one brokerage session active at a time across all IB platforms.</p>
@@ -279,16 +279,16 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
 <li>An "outer" prerequisite <em>read-only session</em> that is required to be active/valid in order to make any CP Web API request, though by itself it only permits access to non-<code>/iserver</code> endpoints.</li>
 <li>The <em>brokerage session</em>, established after the read-only, that permits access to trading, consumption of market data, and all other functionality behind <code>/iserver</code> endpoints.</li>
 </ol>
-<h2>Instrument Discovery</h2>
+<h2>Instrument Discovery <a name="instrument-discovery"></a></h2>
 <p>Documentation coming soon.</p>
-<h2>Market Data</h2>
+<h2>Market Data <a name="market-data"></a></h2>
 <p>In order to retrieve top-of-book, depth-of-book, or historical market data from the Web API, the following must be available:</p>
 <ul>
 <li>Username with relevant live market data subscriptions and permission to trade the desired instruments</li>
 <li>Authorized Web API session</li>
 <li>Brokerage session (access to IServer endpoints)</li>
 </ul>
-<h3>Top-of-Book Snapshots</h3>
+<h3>Top-of-Book Snapshots <a name="top-of-book-snapshots"></a></h3>
 <p>Top-of-book snapshots deliver up-to-date market data values sourced from the same streams as are displayed in Trader Workstation's watchlists.</p>
 <h5><strong>Values needed:</strong></h5>
 <ul>
@@ -353,7 +353,7 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
 ]
 </code></pre>
 <p>Certain <code>fields</code> that update less frequently, particularly those that are computed on an interval, maybe not be delivered immediately, and instead will be returned when updated.</p>
-<h3>Streaming Top-of-Book Data</h3>
+<h3>Streaming Top-of-Book Data <a name="streaming-top-of-book-data"></a></h3>
 <p>To open a stream for live, top-of-book market data for an instrument, we write a message to the websocket in the following form:</p>
 <pre><code class="language-json">smd+CONID+{&quot;fields&quot;:[&quot;field_1&quot;,&quot;field_2&quot;,...,&quot;field_n&quot;]}
 </code></pre>
@@ -384,7 +384,7 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
 <p>For example:</p>
 <pre><code class="language-json">umd+8314+{}
 </code></pre>
-<h2>Orders</h2>
+<h2>Orders <a name="orders"></a></h2>
 <p>All order-related functionality described below assumes the following are available:</p>
 <ul>
 <li>Username with relevant relevant trading permissions</li>
@@ -392,7 +392,7 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
 <li>Brokerage session (access to IServer endpoints)</li>
 <li>Account ID of an account that can receive the order, and for which your username has trading permissions</li>
 </ul>
-<h3>New Order Example</h3>
+<h3>New Order Example <a name="new-order-example"></a></h3>
 <p>The following workflow describes the submission of a new order ticket.</p>
 <h5><strong>Values needed:</strong></h5>
 <ul>
@@ -448,7 +448,7 @@ For now, we will submit only a single order ticket by way of a single object ele
   &quot;encrypt_message&quot;: &quot;1&quot;
 }
 </code></pre>
-<h3>Order Reply Messages</h3>
+<h3>Order Reply Messages <a name="order-reply-messages"></a></h3>
 <p>In some cases the response to an order submission request might not deliver an acknowledgment.</p>
 <p>Instead, it might contain an "order reply message" -- essentially a notice -- which must be confirmed via a second request before our order ticket can go to work.</p>
 <p>The receipt of such an "order reply message" does not indicate that the order is rejected or otherwise encountered a problem. Rather, IB requires explicit confirmation of some element of the order ticket, or some aspect of our subsequent handling, before we can seek the order's execution.</p>
@@ -484,7 +484,7 @@ For now, we will submit only a single order ticket by way of a single object ele
 <p>Another important value (or set of values) to capture from order message response is <code>messageIds</code>, as in <code>"messageIds": ["o163"]</code> above.</p>
 <p>These <code>messageIds</code> strings categorize varieties of order reply messages. You can use these IDs to suppress certain types of order reply messages for the remainder of your username's current Web API brokerage session.</p>
 <p>Please see the Suppressing Order Reply Messages section for more detail.</p>
-<h3>Order Reply Suppression</h3>
+<h3>Order Reply Suppression <a name="order-reply-suppression"></a></h3>
 <p>The following response to an order ticket submission indicates that we must confirm some aspect of our order ticket before it will be accepted:</p>
 <pre><code class="language-json">[
   {
@@ -527,11 +527,11 @@ For now, we will submit only a single order ticket by way of a single object ele
   &quot;status&quot;: &quot;submitted&quot;
 }
 </code></pre>
-<h3>Order Rejections</h3>
+<h3>Order Rejections <a name="order-rejections"></a></h3>
 <p>Documentation coming soon.</p>
-<h3>Previewing Orders</h3>
+<h3>Previewing Orders <a name="previewing-orders"></a></h3>
 <p>Documentation coming soon.</p>
-<h3>Modifying Orders</h3>
+<h3>Modifying Orders <a name="modifying-orders"></a></h3>
 <p>The following example describes the submission of a request to modify an existing, unfilled order ticket.</p>
 <h5><strong>Values needed:</strong></h5>
 <ul>
@@ -582,7 +582,7 @@ Instead, the modified order ticket object is the entirety of the request body.</
 }
 </code></pre>
 <p>Alternatively, we may also receive an order reply message, as described above.</p>
-<h3>Canceling Orders</h3>
+<h3>Canceling Orders <a name="canceling-orders"></a></h3>
 <h5><strong>Values needed:</strong></h5>
 <ul>
 <li>The orderId of the order ticket to be canceled</li>
@@ -604,9 +604,9 @@ Instead, the modified order ticket object is the entirety of the request body.</
 }
 </code></pre>
 <p>Note that the above response indicates our request to cancel order 987654 was received, but not that the order ticket itself has been canceled. It is possible that an order working at an exchange or other external venue cannot be canceled, for instance, as a result of auction-related deadlines.</p>
-<h3>Submitting Bracket Orders</h3>
+<h3>Submitting Bracket Orders <a name="submitting-bracket-orders"></a></h3>
 <p>Documentation coming soon.</p>
-<h3>Orders for Combos/Spreads</h3>
+<h3>Orders for Combos/Spreads <a name="orders-for-combos/spreads"></a></h3>
 <p>Combo or spread orders may be submitted using the same <code>/iserver/account/{accountId}/orders</code> endpoint described above. In the case of combo orders, we must include the <code>conidex</code> field in our request body instead of <code>conid</code>. The <code>conidex</code> field is a string representation of our combo order's composition.</p>
 <p>A combo order's <code>conidex</code> value takes the following form: <code>{spread_conid};;;{leg_conid1}/{ratio},{leg_conid2}/{ratio}</code></p>
 <p>The <code>spread_conid</code> value is a unique identifier associated with the currency in which the combo's legs trade. For US Stock Combos, the <code>spread_conid</code> value will the the USD conid integer by itself. For combo orders in all other currencies, <code>spread_conid</code> takes the form <code>spread_conid@exchange</code>.</p>
@@ -679,7 +679,7 @@ Instead, the modified order ticket object is the entirety of the request body.</
 <p>Please be aware that the number of legs permissible in a single combo order varies by exchange.</p>
 <p>Combo orders are priced by summing the per-leg prices, taking into account the side of each leg:
 <code>Combo order price = (Price_Leg1 * Ratio_Leg1) + (Price_Leg2 * Ratio_Leg2) + ... + (Cost_LegN * Ratio_LegN)</code></p>
-<h3>Monitoring Live Orders</h3>
+<h3>Monitoring Live Orders <a name="monitoring-live-orders"></a></h3>
 <p>The <code>/iserver/account/orders</code> endpoint is used to retrieve the status of all recently open orders in a given account. This includes orders currently working as well as those cancelled or filled within the same brokerage session.</p>
 <p>Example request:</p>
 <pre><code class="language-json">GET https://api.ibkr.com/v1/api/iserver/account/orders?filters=filled&amp;force=true&amp;accountId=U1234567
@@ -722,10 +722,10 @@ Instead, the modified order ticket object is the entirety of the request body.</
   &quot;snapshot&quot;: true
 }
 </code></pre>
-<h3>Monitoring Executions</h3>
+<h3>Monitoring Executions <a name="monitoring-executions"></a></h3>
 <p>Documentation coming soon.</p>
-<h2>Portfolio and Positions</h2>
-<h3>Querying Your Accounts</h3>
+<h2>Portfolio and Positions <a name="portfolio-and-positions"></a></h2>
+<h3>Querying Your Accounts <a name="querying-your-accounts"></a></h3>
 <p>In non-tiered account structures, the <code>/portfolio/accounts</code> endpoint returns a list of accounts for which the user can view position and account information.</p>
 <p>This endpoint must be called prior to calling other <code>/portfolio</code> endpoints for those accounts.</p>
 <p>For querying a list of accounts which the user can trade, see <code>/iserver/accounts</code>.
@@ -808,7 +808,7 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
   }
 ]
 </code></pre>
-<h3>Querying Currency Balances</h3>
+<h3>Querying Currency Balances <a name="querying-currency-balances"></a></h3>
 <p>The <code>/portfolio/{accountId}/ledger</code>{:.http} endpoint delivers information regarding cash balances, organized by currency.</p>
 <p>Example request:</p>
 <pre><code class="language-json">GET https://api.ibkr.com/v1/api/portfolio/:U1234567/ledger
@@ -880,7 +880,7 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
   }
 }
 </code></pre>
-<h3>Querying Equity and Margin</h3>
+<h3>Querying Equity and Margin <a name="querying-equity-and-margin"></a></h3>
 <p>The <code>/portfolio/{accountId}/summary</code> endpoint delivers a wide variety of values related to an account's equity, margin use, and accrued balances.</p>
 <p>Values are presented in aggregate form for the entire U-account ("universal account"), as well as diasaggregated by the account's underlying regulatory segments (for instance, the securities segment versus commodities segment, which holds futures products).</p>
 <p>Example request:</p>
@@ -907,10 +907,10 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
   }
 }
 </code></pre>
-<h2>Advisor Features</h2>
+<h2>Advisor Features <a name="advisor-features"></a></h2>
 <p>Documentation coming soon.</p>
-<h2>FYIs, Alerts, and Bulletins</h2>
-<h3>Types of Notification Messages</h3>
+<h2>FYIs, Alerts, and Bulletins <a name="fyis,-alerts,-and-bulletins"></a></h2>
+<h3>Types of Notification Messages <a name="types-of-notification-messages"></a></h3>
 <ul>
 <li>FYIs<ul>
 <li>Disclaimers</li>
@@ -922,7 +922,7 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
 </li>
 <li>Bulletins</li>
 </ul>
-<h3>FYIs</h3>
+<h3>FYIs <a name="fyis"></a></h3>
 <h4>Unread FYIs</h4>
 <p>To get number of un-read notifications/disclaimers next api should be called <code>GET /fyi/unreadnumber</code> which return integer number
 that can be display to make user aware. For example, let's assume we have <code>1</code> un-read and <code>3</code> in total notifications/disclaimers.</p>
@@ -1018,11 +1018,11 @@ that can be display to make user aware. For example, let's assume we have <code>
 }
 </code></pre>
 <p>And call <code>PUT /fyi/disclaimer/{typecode}</code> to accept disclaimer. Once disclaimer is acknowledged, it should not be forced on notifications of the same type.</p>
-<h3>FYI Delivery Options</h3>
+<h3>FYI Delivery Options <a name="fyi-delivery-options"></a></h3>
 <p>TBD, This needs to be revisited. We should figure out if we need to should only email delivery option or others too.</p>
-<h3>Alerts</h3>
+<h3>Alerts <a name="alerts"></a></h3>
 <h4>Creating and Modifying Alerts</h4>
 <h4>Listing Configured Alerts</h4>
 <h4>Retrieving Alert Details</h4>
 <h4>Mobile Trading Alerts</h4>
-<h3>Bulletins</h3>
+<h3>Bulletins <a name="bulletins"></a></h3>
