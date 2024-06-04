@@ -3,15 +3,17 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="docsstyle.css"/>
-    <script src="sidenav.js"></script>
+    <link rel="stylesheet" href="enlighterjs.min.css" />
+    <script type="text/javascript" src="sidenav.js"></script>
 </head>
 
 <body>
+    <main>
     <div id="container">
         <div id="navigation">
             <ul></ul>
         </div>
-        <div id="main">
+        <div id="content">
 
 <h1>Introduction <a name="introduction"></a></h1>
 <p>Interactive Brokers is merging our web-based API products into a single, comprehensive IBKR Web API, bringing the features of the Client Portal Web API, Digital Account Management, and the Flex Web Service together in a unified interface, accessible by a shared means of authorization and authentication: OAuth 2.0.</p>
@@ -1043,7 +1045,16 @@ that can be display to make user aware. For example, let's assume we have <code>
 <h2>Bulletins <a name="bulletins"></a></h2>
 
 
-</div>
-</div>
+        </div>
+    </div>
+    </main>
+    <script type="text/javascript" src="enlighterjs.min.js"></script>
+    <script type="text/javascript">
+        EnlighterJS.init('pre', 'code', {
+                language : 'json',
+                theme: 'enlighter',
+                indent : 2
+        });
+    </script>
 </body>
 </html>

@@ -20,14 +20,14 @@ h3 {
     color: #404040
 }
 
-pre {
+/* pre {
     white-space: pre-wrap;
     word-wrap: break-word;
-    background: #333333; /* #202020 */
+    background: #333333;
     color: #d0d0d0;
     padding: 15px;
     border-radius: 15px
-}
+} */
 
 table, th, td {
     border: 1px solid;
@@ -62,22 +62,3 @@ table, th, td {
     margin-left: 440px;
     width: 60vw
 }
-
-.jp { color: #f0f0f0 }
-.jk { color: #6ab825 }
-.ji { color: #3677a9 }
-.jf { color: #24909d }
-.js { color: #ed9d13 }
-.jb { color: #9c36a9 }
-.jn { color: #d22323 }
-
-.hg { color: #589819; font-weight: bold; font-size: 1.2em }
-.hp { color: #447fcf; font-weight: bold; font-size: 1.2em }
-.hd { color: #e84040; font-weight: bold; font-size: 1.2em }
-.hu { color: #9c36a9; font-weight: bold; font-size: 1.2em }
-.hb { color: #b0b0b0 } /* #6b6a6a */
-.hr { color: #f0f0f0; font-weight: bold; padding-left: 3px }
-.ht { color: #ed9d13; padding-left: 3px; padding-right: 3px }
-.hs { color: #b0b0b0; padding-left: 3px; padding-right: 3px }
-.hk { color: #6ab825 }
-.hv { color: #ed9d13 }
