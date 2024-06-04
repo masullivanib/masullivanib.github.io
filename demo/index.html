@@ -320,10 +320,10 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
 <p>In order for the desired data to be available for snapshotting on request, a "pre-flight" request must be made to IServer to begin its consumption of the instrument's live data stream.</p>
 <p>This initial request will not deliver any data, but rather makes the stream available for future snapshot requests. Snapshot market data is not cached and is extracted directly from these open streams.</p>
 <p>This pre-flight request should include in its <code>fields</code> parameter all of the tags desired in the future:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/iserver/marketdata/snapshot?conids=265598,8314&amp;fields=31,7059,84,88,86,85
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/iserver/marketdata/snapshot?conids=265598,8314&amp;fields=31,7059,84,88,86,85
+</pre>
 <p>If this is the first time you've made a <code>/iserver/marketdata/snapshot</code> request for <code>conids</code> 265598 and 8314, you will not receive data in response. Instead you'll see the requested <code>conids</code> returned, indicating that IServer is now streaming data for these instruments.</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;conid&quot;: 265598,
     &quot;conidEx&quot;: &quot;265598&quot;
@@ -333,12 +333,12 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
     &quot;conidEx&quot;: &quot;8314&quot;
   }
 ]
-</code></pre>
+</pre>
 <p>Once a pre-flight request has been made for a given <code>conid</code>, all requested <code>fields</code> will be delivered with all future responses; future snapshot requests do not need to repeat the desired <code>fields</code>:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/iserver/marketdata/snapshot?conids=265598,8314
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/iserver/marketdata/snapshot?conids=265598,8314
+</pre>
 <p>Returns:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;31&quot;: &quot;168.42&quot;,
     &quot;6119&quot;: &quot;q1&quot;,
@@ -368,18 +368,18 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
     &quot;server_id&quot;: &quot;q2&quot;
   }
 ]
-</code></pre>
+</pre>
 <p>Certain <code>fields</code> that update less frequently, particularly those that are computed on an interval, maybe not be delivered immediately, and instead will be returned when updated.</p>
 <h2>Streaming Top-of-Book Data <a name="streaming-top-of-book-data"></a></h2>
 <p>To open a stream for live, top-of-book market data for an instrument, we write a message to the websocket in the following form:</p>
-<pre><code class="language-json">smd+CONID+{&quot;fields&quot;:[&quot;field_1&quot;,&quot;field_2&quot;,...,&quot;field_n&quot;]}
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">smd+CONID+{&quot;fields&quot;:[&quot;field_1&quot;,&quot;field_2&quot;,...,&quot;field_n&quot;]}
+</pre>
 <p>The values in the <code>fields</code> array are the same field tags used in the HTTP request to <code>/iserver/marketdata/snapshot</code>. These field tag values must be passed as JSON strings, wrapped in double-quotes.</p>
 <p>For example, we may send the following message to obtain streaming data for IBM stock, conid 8314.</p>
-<pre><code class="language-json">smd+8314+{&quot;fields&quot;:[&quot;31&quot;,&quot;84&quot;,&quot;85&quot;,&quot;86&quot;,&quot;88&quot;,&quot;7059&quot;]}
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">smd+8314+{&quot;fields&quot;:[&quot;31&quot;,&quot;84&quot;,&quot;85&quot;,&quot;86&quot;,&quot;88&quot;,&quot;7059&quot;]}
+</pre>
 <p>If successful, we will begin to receive response messages on websocket in the following format:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;31&quot;: &quot;189.60&quot;,
   &quot;6119&quot;: &quot;q2&quot;,
   &quot;6509&quot;: &quot;RpB&quot;,
@@ -394,13 +394,13 @@ Hence references to brokerage sessions refer to a logged-in username that is in 
   &quot;server_id&quot;: &quot;q2&quot;,
   &quot;topic&quot;: &quot;smd+8314&quot;
 }
-</code></pre>
+</pre>
 <p>We may cancel a top-of-book stream on the websocket by sending:</p>
-<pre><code class="language-json">umd+CONID+{}
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">umd+CONID+{}
+</pre>
 <p>For example:</p>
-<pre><code class="language-json">umd+8314+{}
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">umd+8314+{}
+</pre>
 <h1>Orders <a name="orders"></a></h1>
 <p>All order-related functionality described below assumes the following are available:</p>
 <ul>
@@ -443,7 +443,7 @@ We'd like submit a new order to this account to buy 100 shares of AAPL, with a l
 </ul>
 <p>Note that both the keys and values above are case-sensitive.</p>
 <p>Care must also be taken to ensure the correct JSON data types are used, as detailed in our Reference Material. We may then construct the following request:</p>
-<pre><code class="language-json">POST https://api.ibkr.com/v1/api/iserver/account/:DU123456/orders
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">POST https://api.ibkr.com/v1/api/iserver/account/:DU123456/orders
 [
   {
     &quot;conid&quot;: 265598,
@@ -454,23 +454,23 @@ We'd like submit a new order to this account to buy 100 shares of AAPL, with a l
     &quot;tif&quot;: &quot;DAY&quot;
   }
 ]
-</code></pre>
+</pre>
 <p>Note also that the body of this POST request requires a JSON array containing the order ticket object.
 This array is used to submit order brackets, as detailed below.
 For now, we will submit only a single order ticket by way of a single object element in this array.</p>
 <p>If we are successful in submitting our order, we will receive a response that includes an <code>order_id</code> value that can be used to keep track of the status of the order, as well as an indication of its current status at the time of submission:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;order_id&quot;: &quot;987654&quot;,
   &quot;order_status&quot;: &quot;Submitted&quot;,
   &quot;encrypt_message&quot;: &quot;1&quot;
 }
-</code></pre>
+</pre>
 <h2>Order Reply Messages <a name="order-reply-messages"></a></h2>
 <p>In some cases the response to an order submission request might not deliver an acknowledgment.</p>
 <p>Instead, it might contain an "order reply message" -- essentially a notice -- which must be confirmed via a second request before our order ticket can go to work.</p>
 <p>The receipt of such an "order reply message" does not indicate that the order is rejected or otherwise encountered a problem. Rather, IB requires explicit confirmation of some element of the order ticket, or some aspect of our subsequent handling, before we can seek the order's execution.</p>
 <p>Very often these messages pertain to precautionary settings that are client-configurable for a given username -- effectively "fat finger" protections that you can adjust or remove if desired:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;id&quot;: &quot;07a13a5a-4a48-44a5-bb25-5ab37b79186c&quot;,
     &quot;message&quot;: [
@@ -482,28 +482,28 @@ For now, we will submit only a single order ticket by way of a single object ele
     ]
   }
 ]
-</code></pre>
+</pre>
 <p>Aside from the content of the message, there are two important values delivered in such an "order reply" response.</p>
 <p>First, we have an <code>id</code>, which uniquely identifies the emitted message. Via the <code>/iserver/reply/{messageId}</code> endpoint, we can use this <code>id</code> value to dismiss the message and put our order to work:</p>
-<pre><code class="language-json">POST https://api.ibkr.com/v1/api/iserver/reply/:a12b34c5-d678-9e012f-3456-7a890b12cd3e
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">POST https://api.ibkr.com/v1/api/iserver/reply/:a12b34c5-d678-9e012f-3456-7a890b12cd3e
 {
   &quot;confirmed&quot;:true
 }
-</code></pre>
+</pre>
 <p>The above request requires a JSON body containing <code>{"confirmed":true}</code>, which is an instruction to IB that the message has been received, and you would like to continue with your order.</p>
 <p>Provided the order can be accepted and put to work, the response to your <code>/iserver/reply/{messageId}</code> request will be an order acknowledgement response as shown above:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;order_id&quot;: &quot;1234567890&quot;,
   &quot;order_status&quot;: &quot;Submitted&quot;,
   &quot;encrypt_message&quot;: &quot;1&quot;
 }
-</code></pre>
+</pre>
 <p>Another important value (or set of values) to capture from order message response is <code>messageIds</code>, as in <code>"messageIds": ["o163"]</code> above.</p>
 <p>These <code>messageIds</code> strings categorize varieties of order reply messages. You can use these IDs to suppress certain types of order reply messages for the remainder of your username's current Web API brokerage session.</p>
 <p>Please see the Suppressing Order Reply Messages section for more detail.</p>
 <h2>Order Reply Suppression <a name="order-reply-suppression"></a></h2>
 <p>The following response to an order ticket submission indicates that we must confirm some aspect of our order ticket before it will be accepted:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;id&quot;: &quot;07a13a5a-4a48-44a5-bb25-5ab37b79186c&quot;,
     &quot;message&quot;: [
@@ -515,35 +515,35 @@ For now, we will submit only a single order ticket by way of a single object ele
     ]
   }
 ]
-</code></pre>
+</pre>
 <p>We call these messages "order reply messages".</p>
 <p>The <code>"messageIds"</code> array contains identifiers that categorize the type of order reply message we've received. In this case, we've received <code>"messageIds": ["o163"]</code>.</p>
 <p>Certain types of order reply messages may be suppressed for the duration of your username's current Web API brokerage session.</p>
 <p>When a category of order reply messages is suppressed, you will no longer be sent order reply message responses requiring confirmation. Instead, a valid order ticket will be accepted and acknowledged immediately. Invalid order tickets will be rejected.</p>
 <p>The <code>/iserver/questions/suppress</code> endpoint provides this suppression mechanism. You may <code>POST</code> an array of <code>messageIDs</code> to suppress those order message types for the remainder of the Web API brokerage session:</p>
-<pre><code class="language-json">POST https://api.ibkr.com/v1/api/iserver/questions/suppress
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">POST https://api.ibkr.com/v1/api/iserver/questions/suppress
 {
   &quot;messageIds&quot;: [
     &quot;o163&quot;
   ]
 }
-</code></pre>
+</pre>
 <p>The response will confirm their suppression:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;status&quot;: &quot;submitted&quot;
 }
-</code></pre>
+</pre>
 <p>You do not need to have received a given messageID value previously in order to suppress it.</p>
 <p>We recommend that you submit this list of messages to be suppressed at the beginning of your brokerage session, prior to conducting any trading.</p>
 <p>If you would like to suppress a new type of message while trading, please resend the complete array of <code>messageIds</code>.</p>
 <p>You may also undo all suppression of messages within your current brokerage session:</p>
-<pre><code class="language-json">POST https://api.ibkr.com/v1/api/iserver/questions/suppress/reset
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">POST https://api.ibkr.com/v1/api/iserver/questions/suppress/reset
+</pre>
 <p>And the response will confirm the restoration of delivery of all messages generated during order submission:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;status&quot;: &quot;submitted&quot;
 }
-</code></pre>
+</pre>
 <h2>Order Rejections <a name="order-rejections"></a></h2>
 <p>Documentation coming soon.</p>
 <h2>Previewing Orders <a name="previewing-orders"></a></h2>
@@ -564,7 +564,7 @@ For now, we will submit only a single order ticket by way of a single object ele
 <p>All JSON keys from the initial order submission must be present, and all JSON values must also be the same, except for the value(s) you seek to modify.</p>
 <p>Note that order modification can be subject to different sets of market rules compared to new order submission. Our /iserver/secdef/rules endpoint can be used to inspect the ruleset enforced on a modification.</p>
 <p>Suppose we have an active, unfilled order with orderId 987654 belonging to account DU123456, originally submitted with the following handling instructions:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;conid&quot;: 265598,
     &quot;side&quot;: &quot;BUY&quot;,
@@ -574,9 +574,9 @@ For now, we will submit only a single order ticket by way of a single object ele
     &quot;tif&quot;: &quot;DAY&quot;
   }
 ]
-</code></pre>
+</pre>
 <p>We'd like to change the limit price of this order from 165 to 170. To do so, we send the following request:</p>
-<pre><code class="language-json">POST https://api.ibkr.com/v1/api/iserver/account/:DU123456/order/:987654
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">POST https://api.ibkr.com/v1/api/iserver/account/:DU123456/order/:987654
 {
   &quot;conid&quot;: 265598,
   &quot;side&quot;: &quot;BUY&quot;,
@@ -585,19 +585,19 @@ For now, we will submit only a single order ticket by way of a single object ele
   &quot;quantity&quot;: 100,
   &quot;tif&quot;: &quot;DAY&quot;
 }
-</code></pre>
+</pre>
 <p>Note first that order modification addresses only a single order per request.
 Therefore, this request does not use a JSON array as a container for the modified order ticket object.
 Instead, the modified order ticket object is the entirety of the request body.</p>
 <p>Additionally, we must ensure that all other attributes of the order ticket, aside from the value being altered, are identical to the current, pre-modification attributes of the existing order ticket.</p>
 <p>While it should be sufficient to store the contents of a successfully submitted new order ticket client-side, we may also inspect the contents of an existing order ticket with the Order Status endpoint, <code>/iserver/account/{accountId}/order/status/{orderId}</code>.</p>
 <p>A successful order modification will return a response similar to a successful new order submission:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;order_id&quot;: &quot;987654&quot;,
   &quot;order_status&quot;: &quot;Submitted&quot;,
   &quot;encrypt_message&quot;: &quot;1&quot;
 }
-</code></pre>
+</pre>
 <p>Alternatively, we may also receive an order reply message, as described above.</p>
 <h2>Canceling Orders <a name="canceling-orders"></a></h2>
 <h4><strong>Values needed:</strong></h4>
@@ -610,16 +610,16 @@ Instead, the modified order ticket object is the entirety of the request body.</
 <li><code>orderId</code>: The orderId of the order ticket to be modified.</li>
 </ul>
 <p>The <code>DELETE</code> method of this endpoint does not accept any JSON body. To cancel an order with <code>orderId</code> 987654, we send the following request:</p>
-<pre><code class="language-json">DELETE https://api.ibkr.com/v1/api/iserver/account/:DU123456/order/:987654
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">DELETE https://api.ibkr.com/v1/api/iserver/account/:DU123456/order/:987654
+</pre>
 <p>A successful request for order cancellation returns a message that our request has been received:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
     &quot;msg&quot;: &quot;Request was submitted&quot;,
     &quot;order_id&quot;: 987654,
     &quot;conid&quot;: 265598,
     &quot;account&quot;: &quot;DU123456&quot;
 }
-</code></pre>
+</pre>
 <p>Note that the above response indicates our request to cancel order 987654 was received, but not that the order ticket itself has been canceled. It is possible that an order working at an exchange or other external venue cannot be canceled, for instance, as a result of auction-related deadlines.</p>
 <h2>Submitting Bracket Orders <a name="submitting-bracket-orders"></a></h2>
 <p>Documentation coming soon.</p>
@@ -699,10 +699,10 @@ Instead, the modified order ticket object is the entirety of the request body.</
 <h2>Monitoring Live Orders <a name="monitoring-live-orders"></a></h2>
 <p>The <code>/iserver/account/orders</code> endpoint is used to retrieve the status of all recently open orders in a given account. This includes orders currently working as well as those cancelled or filled within the same brokerage session.</p>
 <p>Example request:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/iserver/account/orders?filters=filled&amp;force=true&amp;accountId=U1234567
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/iserver/account/orders?filters=filled&amp;force=true&amp;accountId=U1234567
+</pre>
 <p>Successful response:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;orders&quot;: [
     {
       &quot;acct&quot;: &quot;U1234567&quot;,
@@ -738,7 +738,7 @@ Instead, the modified order ticket object is the entirety of the request body.</
   ],
   &quot;snapshot&quot;: true
 }
-</code></pre>
+</pre>
 <h2>Monitoring Executions <a name="monitoring-executions"></a></h2>
 <p>Documentation coming soon.</p>
 <h1>Portfolio and Positions <a name="portfolio-and-positions"></a></h1>
@@ -748,10 +748,10 @@ Instead, the modified order ticket object is the entirety of the request body.</
 <p>For querying a list of accounts which the user can trade, see <code>/iserver/accounts</code>.
 For a list of subaccounts in tiered account structures (e.g. financial advisor or ibroker accounts) see <code>/portfolio/subaccounts</code>.</p>
 <p>Example request:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/portfolio/accounts
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/portfolio/accounts
+</pre>
 <p>Successful response:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;id&quot;: &quot;U1234567&quot;,
     &quot;PrepaidCrypto-Z&quot;: false,
@@ -783,16 +783,16 @@ For a list of subaccounts in tiered account structures (e.g. financial advisor o
     &quot;desc&quot;: &quot;U1234567&quot;
   }
 ]
-</code></pre>
+</pre>
 <p>In multi-level account structures (such as Financial Advisor and IBroker accounts), the <code>/portfolio/subaccounts</code> endpoint returns a list of up to 100 subaccounts for which the user can view position and account-related information.</p>
 <p>This endpoint must be called prior to calling other <code>/portfolio</code> endpoints for those subaccounts.</p>
 <p>If you have more than 100 subaccounts use <code>/portfolio/subaccounts2</code>.
 To query a list of accounts the user can trade, see <code>/iserver/accounts</code>.</p>
 <p>Example request:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/portfolio/subaccounts
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/portfolio/subaccounts
+</pre>
 <p>Successful response:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;id&quot;: &quot;U1234567&quot;,
     &quot;PrepaidCrypto-Z&quot;: false,
@@ -824,14 +824,14 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
     &quot;desc&quot;: &quot;U1234567&quot;
   }
 ]
-</code></pre>
+</pre>
 <h2>Querying Currency Balances <a name="querying-currency-balances"></a></h2>
 <p>The <code>/portfolio/{accountId}/ledger</code>{:.http} endpoint delivers information regarding cash balances, organized by currency.</p>
 <p>Example request:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/portfolio/:U1234567/ledger
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/portfolio/:U1234567/ledger
+</pre>
 <p>Successful response:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;USD&quot;: {
     &quot;commoditymarketvalue&quot;: 0.0,
     &quot;futuremarketvalue&quot;: -1051.0,
@@ -896,15 +896,15 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
     &quot;dividends&quot;: 0.0
   }
 }
-</code></pre>
+</pre>
 <h2>Querying Equity and Margin <a name="querying-equity-and-margin"></a></h2>
 <p>The <code>/portfolio/{accountId}/summary</code> endpoint delivers a wide variety of values related to an account's equity, margin use, and accrued balances.</p>
 <p>Values are presented in aggregate form for the entire U-account ("universal account"), as well as diasaggregated by the account's underlying regulatory segments (for instance, the securities segment versus commodities segment, which holds futures products).</p>
 <p>Example request:</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/portfolio/{accountId}/summary
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/portfolio/{accountId}/summary
+</pre>
 <p>Successful response:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;accountcode&quot;: {
     &quot;amount&quot;: 0.0,
     &quot;currency&quot;: null,
@@ -923,7 +923,7 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
     &quot;severity&quot;: 0
   }
 }
-</code></pre>
+</pre>
 <h1>Advisor Features <a name="advisor-features"></a></h1>
 <p>Documentation coming soon.</p>
 <h1>FYIs, Alerts, and Bulletins <a name="fyis,-alerts,-and-bulletins"></a></h1>
@@ -943,20 +943,20 @@ To query a list of accounts the user can trade, see <code>/iserver/accounts</cod
 <h3>Unread FYIs</h3>
 <p>To get number of un-read notifications/disclaimers next api should be called <code>GET /fyi/unreadnumber</code> which return integer number
 that can be display to make user aware. For example, let's assume we have <code>1</code> un-read and <code>3</code> in total notifications/disclaimers.</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/fyi/unreadnumber
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/fyi/unreadnumber
+</pre>
 <p>Response:</p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;BN&quot;:  1
 }
-</code></pre>
+</pre>
 <h3>All Recent FYIs</h3>
 <p>List of all recent notifications can be retrieved by calling <code>GET /fyi/notifications</code> which will provide list of all notifications. <code>R</code> in response indicate if notification/disclaimer was read or not.</p>
 <p>So by using it, corresponding notification can be highlighted to user. Response also contains a title (<code>MS</code>), notification code "fyi code" (<code>FC</code>), unique identifier (<code>ID</code>) and detailed html formatted message (<code>MD</code>).</p>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/fyi/notifications
-</code></pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/fyi/notifications
+</pre>
 <p>Returns:</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;R&quot;: 0,
     &quot;D&quot;: &quot;1710847062.0&quot;,
@@ -985,13 +985,13 @@ that can be display to make user aware. For example, let's assume we have <code>
     &quot;FC&quot;: &quot;PF&quot;
   }
 ]
-</code></pre>
+</pre>
 <h3>Marking FYIs Read</h3>
 <p>Specific FYI notifications can be marked as read via <code>PUT /fyi/notifications/{notificationID}</code>. Please note that you can have multiple notifications for the same group (grouped by <code>fyi code</code>)</p>
 <h3>Managing FYI Subscriptions</h3>
-<pre><code class="language-json">GET https://api.ibkr.com/v1/api/fyi/settings
-</code></pre>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">GET https://api.ibkr.com/v1/api/fyi/settings
+</pre>
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;FC&quot;: &quot;PF&quot;,
     &quot;H&quot;: 0,
@@ -1007,11 +1007,11 @@ that can be display to make user aware. For example, let's assume we have <code>
     &quot;FN&quot;: &quot;Position Transfer&quot;
   } 
 ]
-</code></pre>
+</pre>
 <h3>FYI Disclaimers</h3>
 <p>Detailed message for notification must be shown to user only when user accept corresponding disclaimer.</p>
 <p>Use <code>GET /fyi/settings</code> to see what disclaimers accepted and what not. <code>H</code> represents fact of disclaimer acceptance. More about fyi settings will be below.</p>
-<pre><code class="language-json">[
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">[
   {
     &quot;FC&quot;: &quot;PF&quot;,
     &quot;H&quot;: 0,
@@ -1027,13 +1027,13 @@ that can be display to make user aware. For example, let's assume we have <code>
     &quot;FN&quot;: &quot;Position Transfer&quot;
   } 
 ]
-</code></pre>
+</pre>
 <p>Supplemental text for accept disclaimer can be retrieved by calling <code>GET /fyi/disclaimer/{typecode}</code></p>
-<pre><code class="language-json">{
+<pre data-enlighter-language="json" data-enlighter-linenumbers="false" data-enlighter-lineoffset="5">{
   &quot;FC&quot;: &quot;PF&quot;,
   &quot;DT&quot;: &quot;This communication is provided for information purposes only and is not intended as a recommendation or a solicitation to buy, sell or hold any investment product. Customers are solely responsible for their own trading decisions.&quot;
 }
-</code></pre>
+</pre>
 <p>And call <code>PUT /fyi/disclaimer/{typecode}</code> to accept disclaimer. Once disclaimer is acknowledged, it should not be forced on notifications of the same type.</p>
 <h2>FYI Delivery Options <a name="fyi-delivery-options"></a></h2>
 <p>TBD, This needs to be revisited. We should figure out if we need to should only email delivery option or others too.</p>
