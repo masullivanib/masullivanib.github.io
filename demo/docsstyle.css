@@ -55,7 +55,7 @@ table, th, td {
     color: #374052
 }
 
-#main {
+#content {
     display: table-cell;
     vertical-align: top;
     display: inline-block;
